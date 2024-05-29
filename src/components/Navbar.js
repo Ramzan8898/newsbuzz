@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class Navbar extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg bg-body-tertiary ">
+            <nav className="navbar navbar-expand-lg bg-gradient bg-black " data-bs-theme="dark">
                 <div className="container-fluid ">
                     <a className=" navbar-brand" href="/">NewzBuzz</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
