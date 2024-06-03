@@ -10,10 +10,9 @@ export class News extends Component {
     }
 
     async componentDidMount() {
-        let url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5db21f6c18124fb7857f6cd9f8f3119f&pageSize=16";
+        let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5db21f6c18124fb7857f6cd9f8f3119f&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
         let news = await data.json();
-        console.log(news);
         this.setState({
             articles: news.articles,
             totalResults: news.totalResults
@@ -21,10 +20,10 @@ export class News extends Component {
     }
 
     handleNext = async () => {
-        if (this.state.page + 1 > Math.ceil(this.state.totalResults / 16)) {
+        if (this.state.page + 1 > Math.ceil(this.state.totalResults /this.props.pageSize)) {
 
         } else {
-            let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5db21f6c18124fb7857f6cd9f8f3119f&page=${this.state.page + 1}&pageSize=16`;
+            let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5db21f6c18124fb7857f6cd9f8f3119f&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
             let data = await fetch(url);
             let news = await data.json();
             this.setState({
@@ -34,7 +33,7 @@ export class News extends Component {
         }
     }
     handlePrev = async () => {
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5db21f6c18124fb7857f6cd9f8f3119f&page=${this.state.page - 1}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5db21f6c18124fb7857f6cd9f8f3119f&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
         let news = await data.json();
         this.setState({
@@ -55,7 +54,7 @@ export class News extends Component {
                 </div>
                 <div className="container d-flex justify-content-between">
                     <button disabled={this.state.page <= 1} type="button" onClick={this.handlePrev} className="btn btn-dark btn-sm">&larr; Previous</button>
-                    <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / 16)} type="button" onClick={this.handleNext} className="btn btn-dark btn-sm">Next &rarr;</button>
+                    <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" onClick={this.handleNext} className="btn btn-dark btn-sm">Next &rarr;</button>
                 </div>
             </div>
         )
