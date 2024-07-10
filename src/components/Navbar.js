@@ -12,8 +12,8 @@ export class Navbar extends Component {
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse " id="navbarNavAltMarkup">
-                        <div className="navbar-nav">
+                    <div className="collapse navbar-collapse d-flex justify-content-center" id="navbarNavAltMarkup">
+                        <div className="navbar-nav ">
                             {/* <Link className="nav-link active" to="/general">Home</Link> */}
                             <Link className="nav-link" to='/business'>Business</Link>
                             <Link className="nav-link" to='/entertainment'>Entertainment</Link>

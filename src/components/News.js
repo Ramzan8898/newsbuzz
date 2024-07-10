@@ -7,8 +7,13 @@ export class News extends Component {
         this.state = {
             articles: [],
             page: 1,
-            loading: false
+            loading: false,
         };
+        document.title = `NewsBuzz - ${this.props.category}`
+    }
+
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     async componentDidMount() {
@@ -19,7 +24,7 @@ export class News extends Component {
         this.setState({
             articles: news.articles,
             totalResults: news.totalResults,
-            loading: false
+            loading: false,
         })
     }
 
@@ -54,10 +59,12 @@ export class News extends Component {
         return <>
             <div className=' container my-5'>
                 {this.state.loading && <Loader />}
-                <div className="row container ">
+                <div className="row container">
+                    <h3 className='text-center'> Top {this.capitalizeFirstLetter(this.props.category)} Stories</h3>
                     {this.state.articles.map((element, index) => {
                         return <div className='col-md-3' key={index}>
-                            <NewsBox title={element.title} desc={element.description} imageUrl={element.urlToImage} postUrl={element.url} />
+                            <NewsBox title={element.title} desc={element.description} imageUrl={element.urlToImage}
+                                postUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} category={element.category} />
                         </div>
                     })}
                 </div>
@@ -65,7 +72,6 @@ export class News extends Component {
                     <button disabled={this.state.page <= 1} type="button" onClick={this.handlePrev} className="btn btn-dark btn-sm">&larr; Previous</button>
                     <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" onClick={this.handleNext} className="btn btn-dark btn-sm">Next &rarr;</button>
                 </div>
-
             </div>
         </>
     }
