@@ -5,7 +5,7 @@ export default class NewsBox extends Component {
         let { title, desc, imageUrl, postUrl, author, source } = this.props;
         return (
             <div className=' position-relative'>
-                <span className="badge text-bg-danger position-absolute end-0 translate-middle z-1" >{source}</span>
+                <span className="badge text-bg-danger position-absolute end-0 translate-end z-1 m-2 " >{source}</span>
                 <div className="card my-5">
                     <a href={postUrl}><img className="card-img-top object-fit-cover " alt="card-img" height={200} src={imageUrl ? imageUrl : placeholder} /></a>
                     <div className="card-body">

@@ -3,8 +3,8 @@ import loading from "../media/loading.gif";
 
 function Loader() {
     return (
-        <div>
-            <img src={loading} alt="loading" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+        <div className='text-center'>
+            <img src={loading} alt="loading" className='my-3' />
         </div>
     )
 }
